@@ -1,0 +1,32 @@
+# This is a name of workflow
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Trigger the workflow on push events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checkout a current repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+    
+      # Ensure execution permissions for the script
+      - name: Set execute permissions
+        run: chmod +x ./echoMyName.sh
+        
+      # Runs a bash script
+      - name: Run bash script
+        run: ./echoMyName.sh
